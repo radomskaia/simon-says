@@ -102,3 +102,8 @@ dist
 
 # TernJS port file
 .tern-port
+/.husky/
+/commitlint.config.js
+/package.json
+/package-lock.json
+/eslint.config.mjs
