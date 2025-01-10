@@ -1,5 +1,7 @@
 import { createDOMElement } from "./utils.js";
 import { createLevelList } from "@/js/levelTabs.js";
+import { gameState, newGame } from "@/js/newGame.js";
+import { startGame } from "@/js/startGame.js";
 
 /**
  * Creates and appends the DOM tree for the game interface.
@@ -15,7 +17,7 @@ export function createDOMTree() {
       "flex",
       "flex--column",
       "flex--align-justify-center",
-      "flex_gap-48",
+      "flex_gap-30",
     ],
   });
 
@@ -25,9 +27,14 @@ export function createDOMTree() {
     classList: ["header-primary"],
   });
 
+  allElements.gridDiv = createDOMElement({
+    classList: ["gridDiv"],
+  });
+
   allElements.roundWrapper = createDOMElement({
     tagName: "p",
     textContent: "Round: ",
+    classList: ["roundWrapper"],
   });
   allElements.roundCounter = createDOMElement({
     tagName: "span",
@@ -72,6 +79,7 @@ export function createDOMTree() {
     classList: ["button", "actionButton"],
     textContent: "start",
   });
+  allElements.actionButtons.start.addEventListener("click", startGame);
   allElements.actionButtons.repeat = createDOMElement({
     tagName: "button",
     classList: ["button", "actionButton"],
@@ -82,24 +90,40 @@ export function createDOMTree() {
     classList: ["button", "actionButton"],
     textContent: "new game",
   });
+  allElements.actionButtons.newGame.addEventListener("click", newGame);
   allElements.actionButtons.next = createDOMElement({
     tagName: "button",
     classList: ["button", "actionButton"],
     textContent: "next",
   });
 
+  allElements.buttonWrapper = createDOMElement({
+    classList: ["flex", "flex_gap-20"],
+  });
+
+  allElements.buttonWrapper.append(
+    allElements.actionButtons.start,
+    allElements.actionButtons.newGame,
+    allElements.actionButtons.next,
+  );
+
+  allElements.gridDiv.append(
+    allElements.actionButtons.repeat,
+    allElements.roundWrapper,
+  );
+
   allElements.container.append(
     allElements.headerPrimary,
-    allElements.roundWrapper,
+    allElements.gridDiv,
     allElements.outputField,
     allElements.levelList,
     allElements.keyboardWrapper,
-    ...Object.values(allElements.actionButtons),
+    allElements.buttonWrapper,
   );
 
   document.body.append(allElements.container);
 
-  return {
+  gameState.elements = {
     keyboardWrapper: allElements.keyboardWrapper,
     roundCounter: allElements.roundCounter,
     actionButtons: allElements.actionButtons,

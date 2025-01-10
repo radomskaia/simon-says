@@ -1,6 +1,6 @@
 import { createDOMElement } from "./utils.js";
 //import { gameLogic } from "./gameLogic.js";
-import { gameState } from "./startGame.js";
+import { gameState } from "./newGame.js";
 
 const RUSSIAN_LAYOUT = { firstChar: "а", lastChar: "я" };
 const NUMBER_LAYOUT = {
@@ -109,12 +109,20 @@ function renderKeyboard(elements) {
  * Renders the keyboard and adds event listeners for each key.
  * @param {Object} elements - An object containing the DOM elements used in the game.
  */
-export function keyboard(elements) {
-  renderKeyboard(elements);
+export function keyboard() {
+  renderKeyboard(gameState.elements);
   window.addEventListener("keydown", (event) => {
-    keyDownHandler(event, elements.keyboards, elements.keyboardWrapper);
+    keyDownHandler(
+      event,
+      gameState.elements.keyboards,
+      gameState.elements.keyboardWrapper,
+    );
   });
   window.addEventListener("keyup", (event) => {
-    keyUpHandler(event, elements.keyboards, elements.keyboardWrapper);
+    keyUpHandler(
+      event,
+      gameState.elements.keyboards,
+      gameState.elements.keyboardWrapper,
+    );
   });
 }

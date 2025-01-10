@@ -1,19 +1,13 @@
-import { keyboard } from "@/js/keyboard.js";
+import { gameState } from "./newGame.js";
 
-export const gameState = {
-  isEnd: false,
-  roundCounter: 0,
-  level: "ease",
-  isPlaying: false,
-  sequence: "",
-};
-
-/**
- * Initializes the game by selecting a new word, rendering its letters, and displaying the hint.
- * @param {Object} elements - An object containing the DOM elements used in the game.
- */
-export function startGame(elements) {
-  elements.levelInputs[gameState.level].checked = true;
-  gameState.roundCounter = 0;
-  elements.roundCounter = gameState.roundCounter;
+export function startGame() {
+  gameState.isPlaying = true;
+  gameState.elements.levelList.classList.add("no-pointer-events");
+  Object.entries(gameState.elements.actionButtons).forEach(([key, value]) => {
+    if (key === "start") {
+      value.classList.add("display-none");
+      return;
+    }
+    value.classList.remove("display-none");
+  });
 }

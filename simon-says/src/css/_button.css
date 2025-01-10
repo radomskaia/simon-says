@@ -12,9 +12,13 @@
 }
 
 .actionButton {
-  padding: 10px;
+  border: solid 1px var(--static-white);
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 2rem;
   text-transform: uppercase;
-  color: var(--static-white);
+  color: var(--dark);
+  background-color: var(--static-green);
 }
 
 .tabButton {
