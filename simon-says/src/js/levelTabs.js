@@ -1,6 +1,7 @@
 import { createDOMElement } from "./utils.js";
+import { gameState } from "@/js/startGame.js";
 
-function createRadioButton(id) {
+function createRadioButton(id, levelInputs) {
   const liElement = createDOMElement({
     tagName: "li",
   });
@@ -13,27 +14,35 @@ function createRadioButton(id) {
       id: id,
     },
   });
+  levelInputs[id] = inputElement;
   const labelElement = createDOMElement({
     tagName: "label",
-    classList: ["button"],
+    classList: ["button", "tabButton"],
     textContent: id,
     attributes: {
       for: id,
     },
   });
   liElement.append(inputElement, labelElement);
+  liElement.addEventListener("click", (e) => {
+    if (gameState.isPlaying) {
+      return;
+    }
+    gameState.level = id;
+  });
   return liElement;
 }
 
-export function createLevelList(levels) {
+export function createLevelList(levels, elements) {
   const levelList = createDOMElement({
     tagName: "ul",
     classList: ["flex", "flex--justify-center", "flex_gap-20"],
   });
-  const levelsElement = {};
+  const levelsButton = {};
+  elements.levelInputs = {};
   levels.forEach((level) => {
-    levelsElement[level] = createRadioButton(level);
+    levelsButton[level] = createRadioButton(level, elements.levelInputs);
   });
-  levelList.append(...Object.values(levelsElement));
+  levelList.append(...Object.values(levelsButton));
   return levelList;
 }

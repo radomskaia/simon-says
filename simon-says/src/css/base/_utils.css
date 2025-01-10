@@ -42,9 +42,9 @@
   gap: 10px;
 }
 
-/* .display-none { */
-/*   display: none; */
-/* } */
+.display-none {
+  display: none;
+}
 
 .image {
   width: 100%;

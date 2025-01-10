@@ -1,4 +1,5 @@
 .keyboardWrapper {
+  min-height: 250px;
   max-width: 690px;
 }
 
@@ -17,6 +18,14 @@
 .buttonKeyboard:disabled {
   background-color: var(--dark);
   cursor: auto;
+}
+
+.container:has(#ease:checked) .letters {
+  display: none;
+}
+
+.container:has(#medium:checked) .numbers {
+  display: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -50,6 +59,7 @@
 /* 720px */
 @media only screen and (width <= 45em) {
   .keyboardWrapper {
+    min-height: 190px;
     max-width: 490px;
   }
 

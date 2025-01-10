@@ -11,3 +11,26 @@
   cursor: pointer;
 }
 
+.actionButton {
+  padding: 10px;
+  text-transform: uppercase;
+  color: var(--static-white);
+}
+
+.tabButton {
+  padding: 5px;
+  width: 100px;
+  text-transform: capitalize;
+  color: var(--dark);
+  background-color: var(--static-white);
+}
+
+.tabButton:hover {
+  background-color: var(--primary-alpha);
+}
+
+input:checked ~ .tabButton,
+input:checked ~ .tabButton:hover {
+    color: var(--static-white);
+  background-color: var(--dark);
+}

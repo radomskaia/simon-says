@@ -40,55 +40,61 @@ export function createDOMTree() {
     classList: ["counter-text"],
   });
 
-  allElements.levelList = createLevelList(["ease", "medium", "hard"]);
-
   allElements.roundWrapper.append(
     allElements.roundCounter,
     allElements.roundText,
   );
 
+  allElements.levelList = createLevelList(
+    ["ease", "medium", "hard"],
+    allElements,
+  );
+
   allElements.keyboardWrapper = createDOMElement({
-    classList: ["flex", "flex--wrap", "flex_gap-10", "keyboardWrapper"],
+    classList: [
+      "flex",
+      "flex--wrap",
+      "flex_gap-10",
+      "keyboardWrapper",
+      "flex--align-justify-center",
+    ],
   });
 
-  allElements.inputField = createDOMElement({
-    tagName: "input",
-    attributes: {
-      type: "text",
-      value: "Make sure the English keyboard layout is enabled.",
-      readonly: true,
-    },
+  allElements.outputField = createDOMElement({
+    tagName: "p",
+    classList: ["outputField"],
+    textContent: "Make sure the English keyboard layout is enabled.",
   });
-  allElements.buttons = {};
+  allElements.actionButtons = {};
 
-  allElements.buttons.start = createDOMElement({
+  allElements.actionButtons.start = createDOMElement({
     tagName: "button",
-    classList: ["button"],
+    classList: ["button", "actionButton"],
     textContent: "start",
   });
-  allElements.buttons.repeat = createDOMElement({
+  allElements.actionButtons.repeat = createDOMElement({
     tagName: "button",
-    classList: ["button"],
+    classList: ["button", "actionButton"],
     textContent: "Repeat the sequence",
   });
-  allElements.buttons.newGame = createDOMElement({
+  allElements.actionButtons.newGame = createDOMElement({
     tagName: "button",
-    classList: ["button"],
+    classList: ["button", "actionButton"],
     textContent: "new game",
   });
-  allElements.buttons.next = createDOMElement({
+  allElements.actionButtons.next = createDOMElement({
     tagName: "button",
-    classList: ["button"],
+    classList: ["button", "actionButton"],
     textContent: "next",
   });
 
   allElements.container.append(
     allElements.headerPrimary,
     allElements.roundWrapper,
-    allElements.inputField,
+    allElements.outputField,
     allElements.levelList,
     allElements.keyboardWrapper,
-    ...Object.values(allElements.buttons),
+    ...Object.values(allElements.actionButtons),
   );
 
   document.body.append(allElements.container);
@@ -96,5 +102,9 @@ export function createDOMTree() {
   return {
     keyboardWrapper: allElements.keyboardWrapper,
     roundCounter: allElements.roundCounter,
+    actionButtons: allElements.actionButtons,
+    levelList: allElements.levelList,
+    levelInputs: allElements.levelInputs,
+    outputField: allElements.outputField,
   };
 }
