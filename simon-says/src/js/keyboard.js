@@ -16,7 +16,7 @@ function clickHandler(key, elements, char, isTrusted) {
   if (keyPressed.isPressed && isTrusted) {
     return;
   }
-
+  gameState.elements.outputField.textContent += char;
   console.log("clicked", char);
   //gameLogic(elements, char, key);
 }
@@ -24,7 +24,7 @@ function clickHandler(key, elements, char, isTrusted) {
 let keyPressed = { isPressed: false };
 
 function keyDownHandler(event, keyboards, keyboardWrapper) {
-  if (gameState.isEnd || keyPressed.isPressed) {
+  if (gameState.isEnd || keyPressed.isPressed || !gameState.isPlaying) {
     return;
   }
   const key = event.key.toLowerCase();
@@ -76,7 +76,6 @@ function renderKey(charCode, elements, wrappers, keyboardType) {
 }
 
 function renderKeyboard(elements) {
-  elements.keyboardKeys = {};
   elements.keyboards = {};
   elements.keyboards.ease = {};
   elements.keyboards.medium = {};

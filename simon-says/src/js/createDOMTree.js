@@ -2,6 +2,7 @@ import { createDOMElement } from "./utils.js";
 import { createLevelList } from "@/js/levelTabs.js";
 import { gameState, newGame } from "@/js/newGame.js";
 import { startGame } from "@/js/startGame.js";
+import { createModal } from "@/js/modal.js";
 
 /**
  * Creates and appends the DOM tree for the game interface.
@@ -27,8 +28,8 @@ export function createDOMTree() {
     classList: ["header-primary"],
   });
 
-  allElements.gridDiv = createDOMElement({
-    classList: ["gridDiv"],
+  allElements.flexDiv = createDOMElement({
+    classList: ["flex", "flex--align-justify-center", "flex_gap-10"],
   });
 
   allElements.roundWrapper = createDOMElement({
@@ -105,23 +106,20 @@ export function createDOMTree() {
     allElements.actionButtons.start,
     allElements.actionButtons.newGame,
     allElements.actionButtons.next,
+    allElements.actionButtons.repeat,
   );
 
-  allElements.gridDiv.append(
-    allElements.actionButtons.repeat,
-    allElements.roundWrapper,
-  );
+  allElements.flexDiv.append(allElements.outputField, allElements.roundWrapper);
 
   allElements.container.append(
     allElements.headerPrimary,
-    allElements.gridDiv,
-    allElements.outputField,
+    allElements.flexDiv,
     allElements.levelList,
     allElements.keyboardWrapper,
     allElements.buttonWrapper,
   );
 
-  document.body.append(allElements.container);
+  document.body.append(allElements.container, createModal());
 
   gameState.elements = {
     keyboardWrapper: allElements.keyboardWrapper,

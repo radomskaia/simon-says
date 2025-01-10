@@ -43,6 +43,7 @@ ul{
 .roundWrapper {
   align-content: center;
   grid-column-start: 2;
+  min-width: 107px;
   min-height: 46px;
 }
 
@@ -52,6 +53,8 @@ ul{
   width: 100%;
   max-width: 500px;
   text-align: center;
+  padding: 10px 40px;
+  width: 400px;
   color: var(--dark);
   background-color: var(--primary-alpha2);
 }

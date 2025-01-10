@@ -21,6 +21,16 @@
   background-color: var(--static-green);
 }
 
+.actionButton:hover,
+.actionButton:disabled {
+  background-color: var(--static-green-alpha);
+}
+
+.actionButton:disabled {
+  color: var(--primary-alpha);
+  cursor: auto;
+}
+
 .tabButton {
   padding: 5px;
   width: 100px;

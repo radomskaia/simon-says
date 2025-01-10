@@ -5,7 +5,8 @@
   --primary-alpha2: rgb(94 99 186 / 10%);
   --dark: #2f3480;
   --static-red: #ff3401;
-  --static-green: rgba(40, 180, 133, 0.4);
+  --static-green: rgba(40, 180, 133, 0.8);
+  --static-green-alpha: rgba(40, 180, 133, 0.3);
   --static-white: #fbfbfd;
   --content-background: #ecf3f8;
   --overlay: rgb(24 28 41 / 80%);
