@@ -1,0 +1,39 @@
+/* 1360 */
+@media only screen and (width <= 85em) {
+  .flex_gap-48 {
+    gap: 30px;
+  }
+
+}
+
+/* 1280px */
+@media only screen and (width <= 80em) {
+  .container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding-block: 20px;
+  }
+
+  .container > :first-child {
+    max-width: 500px;
+  }
+}
+
+/* 720px */
+@media only screen and (width <= 45em) {
+  .html {
+    /* 9px */
+    font-size: 56.25%;
+  }
+
+   .container {
+     padding-inline: 20px;
+   }
+
+   .container > :first-child {
+    max-width: 400px;
+  }
+}
+
+

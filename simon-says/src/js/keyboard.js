@@ -37,7 +37,7 @@ function keyDownHandler(event, keyboardKeys, keyboardWrapper) {
   }
   keyPressed.isPressed = true;
   keyPressed.key = key;
-  keyboardKeys[key].classList.add("button-keyboard-active");
+  keyboardKeys[key].classList.add("buttonKeyboardActive");
   keyboardWrapper.classList.add("no-pointer-events");
   const newEvent = new MouseEvent("click");
   keyboardKeys[key].dispatchEvent(newEvent);
@@ -48,7 +48,7 @@ function keyUpHandler(event, keyboardKeys, keyboardWrapper) {
     return;
   }
   keyPressed.isPressed = false;
-  keyboardKeys[keyPressed.key].classList.remove("button-keyboard-active");
+  keyboardKeys[keyPressed.key].classList.remove("buttonKeyboardActive");
   keyboardWrapper.classList.remove("no-pointer-events");
 }
 
@@ -56,11 +56,11 @@ function renderKey(charCode, elements, keyboardType) {
   const char = String.fromCharCode(charCode);
   const key = createDOMElement({
     tagName: "button",
-    classList: ["button", "button-keyboard", keyboardType],
+    classList: ["button", "buttonKeyboard", keyboardType],
   });
   const keyText = createDOMElement({
     tagName: "p",
-    classList: ["keyboard-text"],
+    classList: ["keyboardText"],
     textContent: char,
   });
   key.append(keyText);

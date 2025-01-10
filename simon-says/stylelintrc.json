@@ -1,7 +1,7 @@
 {
   "defaultSeverity": "warning",
   "plugins": ["stylelint-order"],
-  "stylelint.validate": ["css", "scss"],
+  "stylelint.validate": ["css"],
   "rules": {
     "order/order": [
       "custom-properties",
@@ -553,56 +553,11 @@
     "unit-no-unknown": true,
     "value-keyword-case": "lower",
     "value-no-vendor-prefix": true,
-    "scss/at-else-closing-brace-newline-after": "always-last-in-chain",
-    "scss/at-else-closing-brace-space-after": "always-intermediate",
-    "scss/at-else-empty-line-before": "never",
-    "scss/at-else-if-parentheses-space-before": "always",
-    "scss/at-extend-no-missing-placeholder": null,
-    "scss/at-function-parentheses-space-before": "never",
-    "scss/at-function-pattern": null,
-    "scss/at-if-closing-brace-newline-after": "always-last-in-chain",
-    "scss/at-if-closing-brace-space-after": "always-intermediate",
-    "scss/load-no-partial-leading-underscore": true,
-    "scss/at-import-partial-extension-blacklist": null,
-    "scss/at-mixin-argumentless-call-parentheses": "never",
-    "scss/at-mixin-parentheses-space-before": "never",
-    "scss/at-mixin-pattern": null,
-    "scss/at-rule-no-unknown": true,
-    "scss/declaration-nested-properties": "never",
-    "scss/declaration-nested-properties-no-divided-groups": null,
-    "scss/dollar-variable-colon-newline-after": "always-multi-line",
-    "scss/dollar-variable-colon-space-after": "always-single-line",
-    "scss/dollar-variable-colon-space-before": "never",
-    "scss/dollar-variable-empty-line-before": [
-      "always",
-      {
-        "except": ["after-dollar-variable", "first-nested"],
-        "ignore": ["after-comment", "inside-single-line-block"]
-      }
-    ],
-    "scss/dollar-variable-no-missing-interpolation": null,
-    "scss/dollar-variable-pattern": null,
-    "scss/double-slash-comment-empty-line-before": [
-      "always",
-      {
-        "except": ["first-nested"],
-        "ignore": ["between-comments", "stylelint-commands"]
-      }
-    ],
-    "media-feature-range-notation": "prefix",
-    "scss/double-slash-comment-inline": null,
-    "scss/double-slash-comment-whitespace-inside": "always",
-    "scss/media-feature-value-dollar-variable": null,
-    "scss/operator-no-newline-after": null,
-    "scss/operator-no-newline-before": null,
-    "scss/operator-no-unspaced": true,
-    "scss/partial-no-import": null,
-    "scss/percent-placeholder-pattern": null,
-    "scss/selector-no-redundant-nesting-selector": true
+    "media-feature-range-notation": "prefix"
   },
   "overrides": [
     {
-      "files": ["src/**/**.scss"],
+      "files": ["src/**/**.css"],
       "rules": {
         "selector-class-pattern": [
           "^[a-z]+([A-Z0-9][a-zA-Z0-9]+)*$",

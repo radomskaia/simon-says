@@ -1,0 +1,13 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px var(--primary);
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  color: inherit;
+  background-color: var(--primary);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
