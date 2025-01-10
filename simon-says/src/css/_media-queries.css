@@ -11,7 +11,6 @@
   .container {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
     padding-block: 20px;
   }
 

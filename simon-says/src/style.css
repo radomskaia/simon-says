@@ -2,6 +2,8 @@
 @import "css/base/_typography.css";
 @import "css/_button.css";
 @import "css/_keyboard.css";
+@import "css/_modal.css";
+@import "css/_media-queries.css";
 @import "css/base/_utils.css";
 
 /* base */
@@ -49,10 +51,6 @@ ul{
 
 .outputField {
   border-radius: 20px;
-  padding: 10px;
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
   padding: 10px 40px;
   width: 400px;
   color: var(--dark);
