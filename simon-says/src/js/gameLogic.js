@@ -26,7 +26,8 @@ function checkGameOver() {
     disabledKeyboard(true);
     gameState.elements.actionButtons.next.classList.remove("display-none");
     gameState.elements.actionButtons.repeat.classList.add("display-none");
-    //@todo вывести фидбек о победе
+    gameState.elements.outputField.textContent = "You passed the round! =)";
+    gameState.elements.outputField.classList.add("outputFieldFinish");
   } else {
     showModalWindow();
   }
@@ -47,7 +48,11 @@ export function gameLogic(pressedChar) {
     gameState.isMistake = true;
     console.log("Mistake");
     disabledKeyboard(true);
-    //  @todo цветовое выделение и/или сообщение об ошибке
+    gameState.elements.actionButtons.repeat.classList.add(
+      "actionButtonHighlight",
+    );
+    gameState.elements.outputField.textContent = "You are wrong! =(";
+    gameState.elements.outputField.classList.add("outputFieldMistake");
   } else {
     gameState.elements.outputField.textContent += pressedChar;
     gameState.sequenceArray.shift();

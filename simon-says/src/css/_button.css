@@ -12,17 +12,26 @@
 }
 
 .actionButton {
-  border: solid 1px var(--static-white);
+  border: none;
   padding: 10px 20px;
+  box-shadow: none;
   font-weight: 700;
   font-size: 2rem;
   text-transform: uppercase;
   color: var(--dark);
   background-color: var(--static-green);
+  transform: translateY(0);
+}
+
+.actionButtonHighlight {
+  box-shadow: 1px 10px 15px var(--primary-alpha);
+  color: var(--static-white);
+  transform: translateY(-4px);
 }
 
 .actionButton:hover,
 .actionButton:disabled {
+  color: var(--dark);
   background-color: var(--static-green-alpha);
 }
 

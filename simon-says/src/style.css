@@ -60,3 +60,17 @@ ul{
   color: var(--dark);
   background-color: var(--primary-alpha2);
 }
+
+.outputFieldMistake,
+.outputFieldFinish {
+  font-weight: 700;
+  text-align: center;
+}
+
+.outputFieldMistake {
+  color: var(--static-red);
+}
+
+.outputFieldFinish {
+  color: #008000FF;
+}

@@ -19,6 +19,7 @@ export function newGame() {
   const elements = gameState.elements;
   elements.levelInputs[gameState.level].checked = true;
   gameState.roundCounter = 0;
+  gameState.sequenceArray = [];
   elements.roundCounter.textContent = gameState.roundCounter;
   elements.outputField.textContent = "Switch to English keyboard layout";
   elements.levelList.classList.remove("no-pointer-events");

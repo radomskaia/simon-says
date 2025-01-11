@@ -94,7 +94,7 @@ export function createDOMTree() {
   allElements.actionButtons.newGame.addEventListener("click", newGame);
   allElements.actionButtons.next = createDOMElement({
     tagName: "button",
-    classList: ["button", "actionButton"],
+    classList: ["button", "actionButton", "actionButtonHighlight"],
     textContent: "next",
   });
   allElements.actionButtons.next.addEventListener("click", startGame);

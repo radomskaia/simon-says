@@ -65,6 +65,11 @@ function generateSequence() {
   repeatButton.onclick = () => {
     showSequence(sequenceButtons);
     gameState.isMistake = true;
+    gameState.elements.actionButtons.repeat.classList.remove(
+      "actionButtonHighlight",
+    );
+    gameState.elements.outputField.classList.remove("outputFieldMistake");
+    gameState.elements.outputField.classList.remove("outputFieldFinish");
     gameState.elements.outputField.textContent = "Your sequence: ";
     gameState.sequenceArray = gameState.sequence.split("");
     repeatButton.disabled = true;
@@ -78,6 +83,10 @@ export function startGame() {
   gameState.elements.actionButtons.repeat.disabled = false;
   gameState.isMistake = false;
   gameState.elements.levelList.classList.add("no-pointer-events");
+  gameState.elements.actionButtons.repeat.classList.remove(
+    "actionButtonHighlight",
+  );
+
   Object.entries(gameState.elements.actionButtons).forEach(([key, value]) => {
     if (key === "start" || key === "next") {
       value.classList.add("display-none");
