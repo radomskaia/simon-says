@@ -120,6 +120,7 @@ export function createDOMTree() {
   );
 
   document.body.append(allElements.container, createModal());
+  console.log("modal", gameState.elements.modal);
 
   gameState.elements = {
     keyboardWrapper: allElements.keyboardWrapper,
@@ -128,5 +129,6 @@ export function createDOMTree() {
     levelList: allElements.levelList,
     levelInputs: allElements.levelInputs,
     outputField: allElements.outputField,
+    modal: gameState.elements.modal,
   };
 }

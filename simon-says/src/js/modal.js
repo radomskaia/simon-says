@@ -1,5 +1,4 @@
 import { createDOMElement } from "@/js/utils.js";
-import { resetGame } from "@/js/resetGame.js";
 import { gameState, newGame } from "@/js/newGame.js";
 
 export function createModal() {
@@ -15,7 +14,7 @@ export function createModal() {
   });
   const modalButton = createDOMElement({
     tagName: "button",
-    classList: ["button", "modal-button"],
+    classList: ["button", "actionButton"],
     textContent: "Play again",
   });
   const modalText = createDOMElement({
