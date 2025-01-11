@@ -53,6 +53,10 @@ ul{
   border-radius: 20px;
   padding: 10px 40px;
   width: 400px;
+
+  /* min-width: 100%; */
+  /* max-width: 500px; */
+  /* text-align: center; */
   color: var(--dark);
   background-color: var(--primary-alpha2);
 }

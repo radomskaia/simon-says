@@ -1,6 +1,6 @@
 import { createDOMElement } from "./utils.js";
-//import { gameLogic } from "./gameLogic.js";
 import { gameState } from "./newGame.js";
+import { gameLogic } from "@/js/gameLogic.js";
 
 const RUSSIAN_LAYOUT = { firstChar: "а", lastChar: "я" };
 const NUMBER_LAYOUT = {
@@ -16,7 +16,8 @@ function clickHandler(key, elements, char, isTrusted) {
   if (keyPressed.isPressed && isTrusted) {
     return;
   }
-  gameState.elements.outputField.textContent += char;
+  gameLogic(char);
+
   console.log("clicked", char);
   //gameLogic(elements, char, key);
 }

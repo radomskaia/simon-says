@@ -1,4 +1,4 @@
-import { disabledKeyboard } from "@/js/gameLogic.js";
+import { disabledKeyboard } from "@/js/startGame.js";
 
 export const gameState = {
   isEnd: false,
@@ -7,6 +7,7 @@ export const gameState = {
   isPlaying: false,
   sequence: "",
   elements: {},
+  sequenceArray: [],
 };
 
 /**

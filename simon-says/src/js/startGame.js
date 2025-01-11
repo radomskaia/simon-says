@@ -45,7 +45,6 @@ function generateSequence() {
   const repeatButton = gameState.elements.actionButtons.repeat;
   const maxIndex = Object.values(keyboard).length;
   const sequenceButtons = [];
-  gameState.sequenceArray = [];
   for (let i = 0; i < sequenceLength; i++) {
     const index = Math.floor(Math.random() * maxIndex);
     const char = Object.keys(keyboard)[index];
@@ -56,9 +55,9 @@ function generateSequence() {
   console.log(gameState.sequenceArray);
   showSequence(sequenceButtons);
   repeatButton.onclick = () => {
-    console.log("false");
     showSequence(sequenceButtons);
 
+    gameState.elements.outputField.textContent = "Your sequence: ";
     gameState.sequenceArray = gameState.sequence.split("");
     repeatButton.disabled = true;
   };
