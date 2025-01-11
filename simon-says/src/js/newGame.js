@@ -3,7 +3,7 @@ import { disabledKeyboard } from "@/js/startGame.js";
 export const gameState = {
   isEnd: false,
   roundCounter: 0,
-  level: "ease",
+  level: "easy",
   isPlaying: false,
   sequence: "",
   elements: {},
@@ -15,7 +15,6 @@ export const gameState = {
  *  - An object containing the DOM elements used in the game.
  */
 export function newGame() {
-  //console.log(gameState);
   const elements = gameState.elements;
   elements.levelInputs[gameState.level].checked = true;
   gameState.roundCounter = 0;

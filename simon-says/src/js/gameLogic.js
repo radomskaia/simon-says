@@ -8,7 +8,6 @@ const GAME_MESSAGES = {
 };
 
 function showModalWindow() {
-  console.log(gameState.elements.modal);
   gameState.elements.modal.text.textContent =
     gameState.sequenceArray.length === 0
       ? GAME_MESSAGES.WIN
@@ -41,12 +40,10 @@ function checkGameOver() {
 export function gameLogic(pressedChar) {
   const isGuessed = pressedChar === gameState.sequenceArray[0];
   if (!isGuessed && gameState.isMistake) {
-    console.log("Game Over");
     showModalWindow();
   }
   if (!isGuessed) {
     gameState.isMistake = true;
-    console.log("Mistake");
     disabledKeyboard(true);
     gameState.elements.actionButtons.repeat.classList.add(
       "actionButtonHighlight",

@@ -61,7 +61,7 @@ function generateSequence() {
     sequenceButtons.push(keyboard[char]);
   }
   gameState.sequence = gameState.sequenceArray.join("");
-  console.log(gameState.sequenceArray);
+  console.log("Simon says:", gameState.sequenceArray);
   repeatButton.onclick = () => {
     showSequence(sequenceButtons);
     gameState.isMistake = true;

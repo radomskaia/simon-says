@@ -17,9 +17,6 @@ function clickHandler(key, elements, char, isTrusted) {
     return;
   }
   gameLogic(char);
-
-  console.log("clicked", char);
-  //gameLogic(elements, char, key);
 }
 
 let keyPressed = { isPressed: false };
@@ -67,7 +64,7 @@ function renderKey(charCode, elements, wrappers, keyboardType) {
     textContent: char,
   });
   key.append(keyText);
-  wrappers[keyboardType === "ease" ? "numbers" : "letters"].append(key);
+  wrappers[keyboardType === "easy" ? "numbers" : "letters"].append(key);
   elements.keyboards.hard[char] = key;
   elements.keyboards[keyboardType][char] = key;
   key.addEventListener("click", (event) => {
@@ -78,7 +75,7 @@ function renderKey(charCode, elements, wrappers, keyboardType) {
 
 function renderKeyboard(elements) {
   elements.keyboards = {};
-  elements.keyboards.ease = {};
+  elements.keyboards.easy = {};
   elements.keyboards.medium = {};
   elements.keyboards.hard = {};
   const wrappers = {};
@@ -94,7 +91,7 @@ function renderKeyboard(elements) {
     i <= NUMBER_LAYOUT.lastCharCode;
     i++
   ) {
-    renderKey(i, elements, wrappers, "ease");
+    renderKey(i, elements, wrappers, "easy");
   }
   for (
     let i = ENGLISH_LAYOUT.firstCharCode;

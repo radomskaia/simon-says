@@ -54,7 +54,7 @@ export function createDOMTree() {
   );
 
   allElements.levelList = createLevelList(
-    ["ease", "medium", "hard"],
+    ["easy", "medium", "hard"],
     allElements,
   );
 
@@ -120,7 +120,6 @@ export function createDOMTree() {
   );
 
   document.body.append(allElements.container, createModal());
-  console.log("modal", gameState.elements.modal);
 
   gameState.elements = {
     keyboardWrapper: allElements.keyboardWrapper,

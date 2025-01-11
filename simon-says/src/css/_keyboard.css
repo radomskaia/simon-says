@@ -20,7 +20,7 @@
   cursor: auto;
 }
 
-.container:has(#ease:checked) .letters {
+.container:has(#easy:checked) .letters {
   display: none;
 }
 
