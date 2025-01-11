@@ -19,6 +19,7 @@ function showSequence(buttons) {
   disabledKeyboard(true);
   disabledButtons(true);
   let index = 0;
+
   function showNextChar() {
     if (index >= buttons.length) {
       disabledKeyboard(false);
@@ -45,6 +46,7 @@ function showSequence(buttons) {
       showNextChar();
     };
   }
+
   showNextChar();
 }
 
@@ -80,6 +82,8 @@ function generateSequence() {
 export function startGame() {
   gameState.roundCounter++;
   gameState.elements.roundCounter.textContent = gameState.roundCounter;
+  gameState.elements.outputField.classList.remove("outputFieldMistake");
+  gameState.elements.outputField.classList.remove("outputFieldFinish");
   gameState.elements.actionButtons.repeat.disabled = false;
   gameState.isMistake = false;
   gameState.elements.levelList.classList.add("no-pointer-events");
