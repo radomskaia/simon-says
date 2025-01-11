@@ -1,0 +1,28 @@
+.roundWrapper {
+  align-content: center;
+  grid-column-start: 2;
+  min-width: 107px;
+  min-height: 46px;
+}
+
+.outputField {
+  border-radius: 20px;
+  padding: 10px 40px;
+  width: 400px;
+  color: var(--dark);
+  background-color: var(--primary-alpha2);
+}
+
+.outputFieldMistake,
+.outputFieldFinish {
+  font-weight: 700;
+  text-align: center;
+}
+
+.outputFieldMistake {
+  color: var(--static-red);
+}
+
+.outputFieldFinish {
+  color: #008000FF;
+}

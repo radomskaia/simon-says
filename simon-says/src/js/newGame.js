@@ -19,6 +19,8 @@ export function newGame() {
   elements.levelInputs[gameState.level].checked = true;
   gameState.roundCounter = 0;
   gameState.sequenceArray = [];
+  gameState.elements.outputField.classList.remove("outputFieldMistake");
+  gameState.elements.outputField.classList.remove("outputFieldFinish");
   elements.roundCounter.textContent = gameState.roundCounter;
   elements.outputField.textContent = "Switch to English keyboard layout";
   elements.levelList.classList.remove("no-pointer-events");

@@ -33,7 +33,7 @@ function createRadioButton(id, levelInputs) {
 export function createLevelList(levels, elements) {
   const levelList = createDOMElement({
     tagName: "ul",
-    classList: ["flex", "flex--justify-center", "flex_gap-20"],
+    classList: ["flex", "flex--justify-center", "flex_gap-20", "levelList"],
   });
   const levelsButton = {};
   elements.levelInputs = {};

@@ -2,9 +2,10 @@
 @import "css/base/_typography.css";
 @import "css/_button.css";
 @import "css/_keyboard.css";
+@import "css/_outputField.css";
 @import "css/_modal.css";
-@import "css/_media-queries.css";
 @import "css/base/_utils.css";
+@import "css/_media-queries.css";
 
 /* base */
 *,
@@ -32,41 +33,4 @@ a:visited{
 
 ul{
   list-style: none;
-}
-
-.gridDiv {
-  display: grid;
-  place-items: center center;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
-  max-width: 600px;
-}
-
-.roundWrapper {
-  align-content: center;
-  grid-column-start: 2;
-  min-width: 107px;
-  min-height: 46px;
-}
-
-.outputField {
-  border-radius: 20px;
-  padding: 10px 40px;
-  width: 400px;
-  color: var(--dark);
-  background-color: var(--primary-alpha2);
-}
-
-.outputFieldMistake,
-.outputFieldFinish {
-  font-weight: 700;
-  text-align: center;
-}
-
-.outputFieldMistake {
-  color: var(--static-red);
-}
-
-.outputFieldFinish {
-  color: #008000FF;
 }

@@ -29,7 +29,7 @@ export function createDOMTree() {
   });
 
   allElements.flexDiv = createDOMElement({
-    classList: ["flex", "flex--align-justify-center", "flex_gap-10"],
+    classList: ["flex", "flex--align-justify-center", "flex_gap-10", "flexDiv"],
   });
 
   allElements.roundWrapper = createDOMElement({
@@ -99,7 +99,7 @@ export function createDOMTree() {
   });
   allElements.actionButtons.next.addEventListener("click", startGame);
   allElements.buttonWrapper = createDOMElement({
-    classList: ["flex", "flex_gap-20"],
+    classList: ["flex", "flex_gap-20", "flex--align-justify-center"],
   });
 
   allElements.buttonWrapper.append(
