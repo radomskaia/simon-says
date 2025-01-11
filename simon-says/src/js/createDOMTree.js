@@ -97,7 +97,7 @@ export function createDOMTree() {
     classList: ["button", "actionButton"],
     textContent: "next",
   });
-
+  allElements.actionButtons.next.addEventListener("click", startGame);
   allElements.buttonWrapper = createDOMElement({
     classList: ["flex", "flex_gap-20"],
   });
@@ -130,5 +130,6 @@ export function createDOMTree() {
     levelInputs: allElements.levelInputs,
     outputField: allElements.outputField,
     modal: gameState.elements.modal,
+    buttonWrapper: allElements.buttonWrapper,
   };
 }

@@ -12,10 +12,15 @@ export function createModal() {
       "flex_gap-20",
     ],
   });
+  const closeButton = createDOMElement({
+    tagName: "button",
+    classList: ["closeButton"],
+    textContent: "❌",
+  });
   const modalButton = createDOMElement({
     tagName: "button",
     classList: ["button", "actionButton"],
-    textContent: "Play again",
+    textContent: "New Game",
   });
   const modalText = createDOMElement({
     tagName: "p",
@@ -29,9 +34,10 @@ export function createModal() {
   });
   modalText2.append(secretWord);
 
-  modal.append(modalText, modalText2, modalButton);
+  modal.append(closeButton, modalText, modalText2, modalButton);
   document.body.append(modal);
 
+  closeButton.addEventListener("click", () => modal.close());
   modalButton.addEventListener("click", () => {
     modal.close();
     newGame();

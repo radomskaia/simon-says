@@ -23,10 +23,10 @@ function checkGameOver() {
   }
   gameState.isPlaying = false;
   if (gameState.roundCounter !== MAX_ROUND) {
-    console.log("Next");
     disabledKeyboard(true);
-    gameState.elements.actionButtons.next.disabled = false;
-    //  @todo активна кнопка NEXT, неактивно все
+    gameState.elements.actionButtons.next.classList.remove("display-none");
+    gameState.elements.actionButtons.repeat.classList.add("display-none");
+    //@todo вывести фидбек о победе
   } else {
     showModalWindow();
   }
@@ -41,12 +41,12 @@ export function gameLogic(pressedChar) {
   const isGuessed = pressedChar === gameState.sequenceArray[0];
   if (!isGuessed && gameState.isMistake) {
     console.log("Game Over");
-    console.log("Game Over");
     showModalWindow();
   }
   if (!isGuessed) {
     gameState.isMistake = true;
     console.log("Mistake");
+    disabledKeyboard(true);
     //  @todo цветовое выделение и/или сообщение об ошибке
   } else {
     gameState.elements.outputField.textContent += pressedChar;

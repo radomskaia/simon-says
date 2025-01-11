@@ -8,12 +8,21 @@ export function disabledKeyboard(isDisabled) {
   );
 }
 
+function disabledButtons(isDisabled) {
+  gameState.elements.buttonWrapper.classList.toggle(
+    "no-pointer-events",
+    isDisabled,
+  );
+}
+
 function showSequence(buttons) {
   disabledKeyboard(true);
+  disabledButtons(true);
   let index = 0;
   function showNextChar() {
     if (index >= buttons.length) {
       disabledKeyboard(false);
+      disabledButtons(false);
       return;
     }
     const button = buttons[index];
@@ -53,20 +62,21 @@ function generateSequence() {
   }
   gameState.sequence = gameState.sequenceArray.join("");
   console.log(gameState.sequenceArray);
-  showSequence(sequenceButtons);
   repeatButton.onclick = () => {
     showSequence(sequenceButtons);
-
+    gameState.isMistake = true;
     gameState.elements.outputField.textContent = "Your sequence: ";
     gameState.sequenceArray = gameState.sequence.split("");
     repeatButton.disabled = true;
   };
+  showSequence(sequenceButtons);
 }
 
 export function startGame() {
   gameState.roundCounter++;
   gameState.elements.roundCounter.textContent = gameState.roundCounter;
-  generateSequence();
+  gameState.elements.actionButtons.repeat.disabled = false;
+  gameState.isMistake = false;
   gameState.elements.levelList.classList.add("no-pointer-events");
   Object.entries(gameState.elements.actionButtons).forEach(([key, value]) => {
     if (key === "start" || key === "next") {
@@ -76,4 +86,5 @@ export function startGame() {
     value.classList.remove("display-none");
   });
   gameState.elements.outputField.textContent = "Your sequence: ";
+  generateSequence();
 }
