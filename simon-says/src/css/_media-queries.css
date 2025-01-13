@@ -64,5 +64,8 @@
   .actionButton {
     font-size: 1.6rem;
   }
+
+  .actionButtonHighlight {
+  width: 242px;}
 }
 

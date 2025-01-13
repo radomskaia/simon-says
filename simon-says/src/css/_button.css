@@ -24,6 +24,7 @@
 }
 
 .actionButtonHighlight {
+  width: 293px;
   box-shadow: 1px 10px 15px var(--primary-alpha);
   color: var(--static-white);
   transform: translateY(-4px);

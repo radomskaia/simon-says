@@ -8,6 +8,7 @@ export function startRound() {
   gameState.roundCounter++;
   if (gameState.roundCounter === 1) {
     disabledButtons(true, [elementsDOM.levelButtons]);
+    elementsDOM.roundWrapper.classList.remove(CSS_CLASSES.OPACITY_0);
   }
   resetGame(false);
   disabledButtons(true, [

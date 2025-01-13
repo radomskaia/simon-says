@@ -1,4 +1,4 @@
-import { GAME_MESSAGES } from "@/js/gameConstants.js";
+import { CSS_CLASSES, GAME_MESSAGES } from "@/js/gameConstants.js";
 import { gameState } from "@/js/gameState.js";
 import { elementsDOM } from "@/js/elementsDOM.js";
 import { disabledButtons, resetGame } from "@/js/utils.js";
@@ -9,6 +9,7 @@ import { disabledButtons, resetGame } from "@/js/utils.js";
  */
 export function newGame() {
   gameState.roundCounter = 0;
+  elementsDOM.roundWrapper.classList.add(CSS_CLASSES.OPACITY_0);
   elementsDOM.levelButtons[gameState.level].checked = true;
   gameState.sequenceArray = [];
   elementsDOM.outputField.textContent = GAME_MESSAGES.START;

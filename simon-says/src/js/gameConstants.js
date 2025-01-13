@@ -25,6 +25,7 @@ export const CSS_CLASSES = {
   HIGHLIGHT_BUTTON: "actionButtonHighlight",
   BUTTON_ACTIVE: "buttonKeyboardActive",
   NON_INTERACTIVE: "no-pointer-events",
+  OPACITY_0: "opacity",
 };
 export const RUSSIAN_LAYOUT = { firstChar: "а", lastChar: "я" };
 export const NUMBER_LAYOUT = {
@@ -37,8 +38,8 @@ export const ENGLISH_LAYOUT = {
 };
 
 export const ANIMATION = {
-  duration: 700,
-  easing: "ease-in-out",
+  duration: 1000,
+  easing: "ease-out",
   delay: 300,
   transform: { base: "scale(1)", active: "scale(1.2)" },
   background: { base: "var(--primary-alpha)", active: "var(--dark)" },

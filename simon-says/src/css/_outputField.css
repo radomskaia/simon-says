@@ -3,6 +3,10 @@
   grid-column-start: 2;
   min-width: 107px;
   min-height: 46px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity .3s;
+  pointer-events: auto;
 }
 
 .outputField {

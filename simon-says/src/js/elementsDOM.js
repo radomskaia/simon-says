@@ -17,4 +17,5 @@ export const elementsDOM = {
   modal: {},
   outputField: null,
   roundCounter: null,
+  roundWrapper: null,
 };
