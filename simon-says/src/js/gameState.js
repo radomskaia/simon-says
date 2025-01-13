@@ -6,6 +6,7 @@ export const gameState = {
   isPlaying: false,
   isMistake: false,
   isPressed: false,
+  isClicked: false,
   sequenceArray: [],
   sequenceButtons: [],
   sequence: "",

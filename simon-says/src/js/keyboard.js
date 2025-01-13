@@ -13,15 +13,25 @@ import { elementsDOM } from "@/js/elementsDOM.js";
 
 let keyPressed;
 
-function clickHandler(char, isTrusted) {
-  if (gameState.isPressed && isTrusted) {
+function toggleKeyboardState(isPressed, type, isTrusted = true) {
+  elementsDOM.keyboardWrapper.classList.toggle(
+    CSS_CLASSES.NON_INTERACTIVE,
+    isPressed,
+  );
+
+  if (!isTrusted) {
     return;
   }
-  gameLogic(char);
+
+  if (type === "mouse") {
+    gameState.isClicked = isPressed;
+  } else {
+    gameState.isPressed = isPressed;
+  }
 }
 
-function keyDownHandler(event, keyboards, keyboardWrapper) {
-  if (gameState.isPressed || !gameState.isPlaying) {
+function keyDownHandler(event) {
+  if (gameState.isPressed || !gameState.isPlaying || gameState.isClicked) {
     return;
   }
 
@@ -35,29 +45,46 @@ function keyDownHandler(event, keyboards, keyboardWrapper) {
     return;
   }
 
-  if (!keyboards[gameState.level][keyPressed]) {
+  if (!elementsDOM.keyboards[gameState.level][keyPressed]) {
     return;
   }
 
-  gameState.isPressed = true;
-  const keyElement = keyboards[gameState.level][keyPressed];
-
+  const keyElement = elementsDOM.keyboards[gameState.level][keyPressed];
   keyElement.classList.add(CSS_CLASSES.BUTTON_ACTIVE);
-  keyboardWrapper.classList.add(CSS_CLASSES.NON_INTERACTIVE);
 
-  keyElement.click();
+  toggleKeyboardState(true, "keyboard");
+
+  const mouseDownEvent = new MouseEvent("mousedown");
+  keyElement.dispatchEvent(mouseDownEvent);
 }
 
-function keyUpHandler(event, keyboards, keyboardWrapper) {
+function keyUpHandler(event) {
   if (keyPressed !== event.key.toLowerCase() || !gameState.isPressed) {
     return;
   }
 
-  gameState.isPressed = false;
-  keyboards[gameState.level][keyPressed].classList.remove(
+  elementsDOM.keyboards[gameState.level][keyPressed].classList.remove(
     CSS_CLASSES.BUTTON_ACTIVE,
   );
-  keyboardWrapper.classList.remove(CSS_CLASSES.NON_INTERACTIVE);
+
+  toggleKeyboardState(false, "keyboard");
+}
+
+function mouseDownHandler(event, char) {
+  if (event.button !== 0 || (gameState.isPressed && event.isTrusted)) {
+    return;
+  }
+
+  toggleKeyboardState(true, "mouse", event.isTrusted);
+
+  gameLogic(char);
+}
+
+function mouseUpHandler(event) {
+  if (!(gameState.isClicked && event.button === 0) || gameState.isPressed) {
+    return;
+  }
+  toggleKeyboardState(false, "mouse");
 }
 
 function renderKey(charCode, keyboadElements, keyboardType) {
@@ -75,10 +102,10 @@ function renderKey(charCode, keyboadElements, keyboardType) {
   keyElement.append(keyText);
   keyboadElements[LEVELS[2]][char] = keyElement;
   keyboadElements[keyboardType][char] = keyElement;
-  keyElement.addEventListener("click", (event) => {
-    clickHandler(char, event.isTrusted);
-  });
 
+  keyElement.addEventListener("mousedown", (event) => {
+    mouseDownHandler(event, char);
+  });
   return keyElement;
 }
 
@@ -109,16 +136,9 @@ function renderKeyboard(elements) {
   });
 }
 
-/**
- * Renders the keyboard and adds event listeners for each key.
- *  - An object containing the DOM elements used in the game.
- */
 export function keyboard() {
   renderKeyboard(elementsDOM);
-  window.addEventListener("keydown", (event) => {
-    keyDownHandler(event, elementsDOM.keyboards, elementsDOM.keyboardWrapper);
-  });
-  window.addEventListener("keyup", (event) => {
-    keyUpHandler(event, elementsDOM.keyboards, elementsDOM.keyboardWrapper);
-  });
+  window.addEventListener("keydown", keyDownHandler);
+  window.addEventListener("keyup", keyUpHandler);
+  window.addEventListener("mouseup", mouseUpHandler);
 }
