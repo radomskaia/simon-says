@@ -1,11 +1,10 @@
-import { gameState } from "./newGame.js";
 import { disabledKeyboard } from "@/js/startGame.js";
-
-const MAX_ROUND = 5;
-const GAME_MESSAGES = {
-  WIN: "YOU WIN",
-  LOSE: "GAME OVER",
-};
+import {
+  CSS_CLASSES,
+  GAME_MESSAGES,
+  NUMBER_OF_ROUND,
+} from "@/js/gameConstants.js";
+import { gameState } from "@/js/gameState.js";
 
 function showModalWindow() {
   gameState.elements.modal.text.textContent =
@@ -21,12 +20,12 @@ function checkGameOver() {
     return;
   }
   gameState.isPlaying = false;
-  if (gameState.roundCounter !== MAX_ROUND) {
+  if (gameState.roundCounter !== NUMBER_OF_ROUND) {
     disabledKeyboard(true);
-    gameState.elements.actionButtons.next.classList.remove("display-none");
-    gameState.elements.actionButtons.repeat.classList.add("display-none");
-    gameState.elements.outputField.textContent = "You passed the round! =)";
-    gameState.elements.outputField.classList.add("outputFieldFinish");
+    gameState.elements.actionButtons.next.classList.remove(CSS_CLASSES.HIDDEN);
+    gameState.elements.actionButtons.repeat.classList.add(CSS_CLASSES.HIDDEN);
+    gameState.elements.outputField.textContent = GAME_MESSAGES.WIN_ROUND;
+    gameState.elements.outputField.classList.add(CSS_CLASSES.WIN_ROUND);
   } else {
     showModalWindow();
   }
@@ -46,10 +45,10 @@ export function gameLogic(pressedChar) {
     gameState.isMistake = true;
     disabledKeyboard(true);
     gameState.elements.actionButtons.repeat.classList.add(
-      "actionButtonHighlight",
+      CSS_CLASSES.HIGHLIGHT_BUTTON,
     );
-    gameState.elements.outputField.textContent = "You are wrong! =(";
-    gameState.elements.outputField.classList.add("outputFieldMistake");
+    gameState.elements.outputField.textContent = GAME_MESSAGES.MISTAKE;
+    gameState.elements.outputField.classList.add(CSS_CLASSES.MISTAKE);
   } else {
     gameState.elements.outputField.textContent += pressedChar;
     gameState.sequenceArray.shift();

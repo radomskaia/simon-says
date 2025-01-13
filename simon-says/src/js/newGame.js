@@ -1,14 +1,6 @@
 import { disabledKeyboard } from "@/js/startGame.js";
-
-export const gameState = {
-  isEnd: false,
-  roundCounter: 0,
-  level: "easy",
-  isPlaying: false,
-  sequence: "",
-  elements: {},
-  sequenceArray: [],
-};
+import { CSS_CLASSES, GAME_MESSAGES } from "@/js/gameConstants.js";
+import { gameState } from "@/js/gameState.js";
 
 /**
  * Initializes the game by selecting a new word, rendering its letters, and displaying the hint.
@@ -19,19 +11,19 @@ export function newGame() {
   elements.levelInputs[gameState.level].checked = true;
   gameState.roundCounter = 0;
   gameState.sequenceArray = [];
-  gameState.elements.outputField.classList.remove("outputFieldMistake");
-  gameState.elements.outputField.classList.remove("outputFieldFinish");
+  gameState.elements.outputField.classList.remove(CSS_CLASSES.MISTAKE);
+  gameState.elements.outputField.classList.remove(CSS_CLASSES.WIN_ROUND);
   elements.roundCounter.textContent = gameState.roundCounter;
-  elements.outputField.textContent = "Switch to English keyboard layout";
-  elements.levelList.classList.remove("no-pointer-events");
+  elements.outputField.textContent = GAME_MESSAGES.START;
+  elements.levelList.classList.remove(CSS_CLASSES.NON_INTERACTIVE);
   const repeatButton = elements.actionButtons.repeat;
   repeatButton.disabled = false;
   disabledKeyboard(true);
   Object.entries(elements.actionButtons).forEach(([key, value]) => {
     if (key === "start") {
-      value.classList.remove("display-none");
+      value.classList.remove(CSS_CLASSES.HIDDEN);
       return;
     }
-    value.classList.add("display-none");
+    value.classList.add(CSS_CLASSES.HIDDEN);
   });
 }

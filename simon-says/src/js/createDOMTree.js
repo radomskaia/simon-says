@@ -1,8 +1,11 @@
 import { createDOMElement } from "./utils.js";
 import { createLevelList } from "@/js/levelTabs.js";
-import { gameState, newGame } from "@/js/newGame.js";
+import { newGame } from "@/js/newGame.js";
 import { startGame } from "@/js/startGame.js";
 import { createModal } from "@/js/modal.js";
+import { GAME_MESSAGES } from "@/js/magic.js";
+import { gameState } from "@/js/gameState.js";
+import { GAME_MESSAGES } from "@/js/gameConstants.js";
 
 /**
  * Creates and appends the DOM tree for the game interface.
@@ -71,7 +74,7 @@ export function createDOMTree() {
   allElements.outputField = createDOMElement({
     tagName: "p",
     classList: ["outputField"],
-    textContent: "Make sure the English keyboard layout is enabled.",
+    textContent: GAME_MESSAGES.START,
   });
   allElements.actionButtons = {};
 

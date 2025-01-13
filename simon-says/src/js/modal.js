@@ -1,5 +1,7 @@
 import { createDOMElement } from "@/js/utils.js";
-import { gameState, newGame } from "@/js/newGame.js";
+import { newGame } from "@/js/newGame.js";
+
+import { gameState } from "@/js/gameState.js";
 
 export function createModal() {
   const modal = createDOMElement({

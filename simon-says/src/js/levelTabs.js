@@ -1,5 +1,6 @@
 import { createDOMElement } from "./utils.js";
-import { gameState } from "@/js/newGame.js";
+
+import { gameState } from "@/js/gameState.js";
 
 function createRadioButton(id, levelInputs) {
   const liElement = createDOMElement({
@@ -24,7 +25,7 @@ function createRadioButton(id, levelInputs) {
     },
   });
   liElement.append(inputElement, labelElement);
-  liElement.addEventListener("click", (e) => {
+  liElement.addEventListener("click", () => {
     gameState.level = id;
   });
   return liElement;

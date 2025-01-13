@@ -1,6 +1,7 @@
 import { createDOMElement } from "./utils.js";
-import { gameState } from "./newGame.js";
 import { gameLogic } from "@/js/gameLogic.js";
+import { CSS_CLASSES, GAME_MESSAGES } from "@/js/gameConstants.js";
+import { gameState } from "@/js/gameState.js";
 
 const RUSSIAN_LAYOUT = { firstChar: "а", lastChar: "я" };
 const NUMBER_LAYOUT = {
@@ -27,7 +28,7 @@ function keyDownHandler(event, keyboards, keyboardWrapper) {
   }
   const key = event.key.toLowerCase();
   if (key >= RUSSIAN_LAYOUT.firstChar && key <= RUSSIAN_LAYOUT.lastChar) {
-    console.log("Change the keyboard layout, please");
+    console.log(GAME_MESSAGES.CHANGE_LAYOUT);
     return;
   }
   if (!keyboards[gameState.level][key]) {
@@ -35,8 +36,8 @@ function keyDownHandler(event, keyboards, keyboardWrapper) {
   }
   keyPressed.isPressed = true;
   keyPressed.key = key;
-  keyboards[gameState.level][key].classList.add("buttonKeyboardActive");
-  keyboardWrapper.classList.add("no-pointer-events");
+  keyboards[gameState.level][key].classList.add(CSS_CLASSES.BUTTON_ACTIVE);
+  keyboardWrapper.classList.add(CSS_CLASSES.NON_INTERACTIVE);
   const newEvent = new MouseEvent("click");
   keyboards[gameState.level][key].dispatchEvent(newEvent);
 }
@@ -47,9 +48,9 @@ function keyUpHandler(event, keyboards, keyboardWrapper) {
   }
   keyPressed.isPressed = false;
   keyboards[gameState.level][keyPressed.key].classList.remove(
-    "buttonKeyboardActive",
+    CSS_CLASSES.BUTTON_ACTIVE,
   );
-  keyboardWrapper.classList.remove("no-pointer-events");
+  keyboardWrapper.classList.remove(CSS_CLASSES.NON_INTERACTIVE);
 }
 
 function renderKey(charCode, elements, wrappers, keyboardType) {
@@ -104,7 +105,7 @@ function renderKeyboard(elements) {
 
 /**
  * Renders the keyboard and adds event listeners for each key.
- * @param {Object} elements - An object containing the DOM elements used in the game.
+ *  - An object containing the DOM elements used in the game.
  */
 export function keyboard() {
   renderKeyboard(gameState.elements);

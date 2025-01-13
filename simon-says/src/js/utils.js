@@ -1,4 +1,3 @@
-const DELAY_TIME = 300;
 /**
  * Creates and returns a new DOM element with the specified properties.
  * @param {Object} options - The options for creating the DOM element.
@@ -15,10 +14,8 @@ export function createDOMElement({
   attributes = {},
 } = {}) {
   const element = document.createElement(tagName);
-  if (Array.isArray(classList)) {
+  if (classList.length > 0) {
     element.classList.add(...classList);
-  } else if (classList.trim()) {
-    element.classList.add(...classList.split(" "));
   }
   if (textContent) {
     element.textContent = textContent;
@@ -30,12 +27,4 @@ export function createDOMElement({
   }
 
   return element;
-}
-
-export function debounce(callback, delay = DELAY_TIME) {
-  let timeoutID;
-  return function (...args) {
-    clearTimeout(timeoutID);
-    timeoutID = setTimeout(() => callback(...args), delay);
-  };
 }
