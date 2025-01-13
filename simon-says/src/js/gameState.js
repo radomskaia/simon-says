@@ -3,7 +3,7 @@ export const gameState = {
   roundCounter: 0,
   level: "easy",
   isPlaying: false,
-  sequence: "",
-  elements: {},
+  isMistake: false,
   sequenceArray: [],
+  sequence: "",
 };

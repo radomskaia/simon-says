@@ -2,6 +2,7 @@ import { createDOMElement } from "./utils.js";
 import { gameLogic } from "@/js/gameLogic.js";
 import { CSS_CLASSES, GAME_MESSAGES } from "@/js/gameConstants.js";
 import { gameState } from "@/js/gameState.js";
+import { elementsDOM } from "@/js/elementsDOM.js";
 
 const RUSSIAN_LAYOUT = { firstChar: "а", lastChar: "я" };
 const NUMBER_LAYOUT = {
@@ -13,7 +14,7 @@ const ENGLISH_LAYOUT = {
   lastCharCode: "z".charCodeAt(0),
 };
 
-function clickHandler(key, elements, char, isTrusted) {
+function clickHandler(char, isTrusted) {
   if (keyPressed.isPressed && isTrusted) {
     return;
   }
@@ -66,19 +67,15 @@ function renderKey(charCode, elements, wrappers, keyboardType) {
   });
   key.append(keyText);
   wrappers[keyboardType === "easy" ? "numbers" : "letters"].append(key);
-  elements.keyboards.hard[char] = key;
-  elements.keyboards[keyboardType][char] = key;
+  elements.hard[char] = key;
+  elements[keyboardType][char] = key;
   key.addEventListener("click", (event) => {
-    clickHandler(key, elements, char, event.isTrusted);
+    clickHandler(char, event.isTrusted);
   });
   return key;
 }
 
 function renderKeyboard(elements) {
-  elements.keyboards = {};
-  elements.keyboards.easy = {};
-  elements.keyboards.medium = {};
-  elements.keyboards.hard = {};
   const wrappers = {};
   wrappers.numbers = createDOMElement({
     classList: ["numbers", "flex", "flex--wrap", "flex_gap-10"],
@@ -92,14 +89,14 @@ function renderKeyboard(elements) {
     i <= NUMBER_LAYOUT.lastCharCode;
     i++
   ) {
-    renderKey(i, elements, wrappers, "easy");
+    renderKey(i, elements.keyboards, wrappers, "easy");
   }
   for (
     let i = ENGLISH_LAYOUT.firstCharCode;
     i <= ENGLISH_LAYOUT.lastCharCode;
     i++
   ) {
-    renderKey(i, elements, wrappers, "medium");
+    renderKey(i, elements.keyboards, wrappers, "medium");
   }
 }
 
@@ -108,19 +105,11 @@ function renderKeyboard(elements) {
  *  - An object containing the DOM elements used in the game.
  */
 export function keyboard() {
-  renderKeyboard(gameState.elements);
+  renderKeyboard(elementsDOM);
   window.addEventListener("keydown", (event) => {
-    keyDownHandler(
-      event,
-      gameState.elements.keyboards,
-      gameState.elements.keyboardWrapper,
-    );
+    keyDownHandler(event, elementsDOM.keyboards, elementsDOM.keyboardWrapper);
   });
   window.addEventListener("keyup", (event) => {
-    keyUpHandler(
-      event,
-      gameState.elements.keyboards,
-      gameState.elements.keyboardWrapper,
-    );
+    keyUpHandler(event, elementsDOM.keyboards, elementsDOM.keyboardWrapper);
   });
 }

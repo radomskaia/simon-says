@@ -3,9 +3,8 @@ import { createLevelList } from "@/js/levelTabs.js";
 import { newGame } from "@/js/newGame.js";
 import { startGame } from "@/js/startGame.js";
 import { createModal } from "@/js/modal.js";
-import { GAME_MESSAGES } from "@/js/magic.js";
-import { gameState } from "@/js/gameState.js";
 import { GAME_MESSAGES } from "@/js/gameConstants.js";
+import { elementsDOM } from "@/js/elementsDOM.js";
 
 /**
  * Creates and appends the DOM tree for the game interface.
@@ -77,7 +76,6 @@ export function createDOMTree() {
     textContent: GAME_MESSAGES.START,
   });
   allElements.actionButtons = {};
-
   allElements.actionButtons.start = createDOMElement({
     tagName: "button",
     classList: ["button", "actionButton"],
@@ -124,14 +122,12 @@ export function createDOMTree() {
 
   document.body.append(allElements.container, createModal());
 
-  gameState.elements = {
-    keyboardWrapper: allElements.keyboardWrapper,
-    roundCounter: allElements.roundCounter,
-    actionButtons: allElements.actionButtons,
-    levelList: allElements.levelList,
-    levelInputs: allElements.levelInputs,
-    outputField: allElements.outputField,
-    modal: gameState.elements.modal,
-    buttonWrapper: allElements.buttonWrapper,
-  };
+  elementsDOM.keyboardWrapper = allElements.keyboardWrapper;
+  elementsDOM.roundCounter = allElements.roundCounter;
+  elementsDOM.actionButtons = allElements.actionButtons;
+  elementsDOM.levelList = allElements.levelList;
+  elementsDOM.levelInputs = allElements.levelInputs;
+  elementsDOM.outputField = allElements.outputField;
+  elementsDOM.modal = allElements.modal;
+  elementsDOM.buttonWrapper = allElements.buttonWrapper;
 }

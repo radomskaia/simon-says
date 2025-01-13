@@ -1,7 +1,6 @@
 import { createDOMElement } from "@/js/utils.js";
 import { newGame } from "@/js/newGame.js";
-
-import { gameState } from "@/js/gameState.js";
+import { elementsDOM } from "@/js/elementsDOM.js";
 
 export function createModal() {
   const modal = createDOMElement({
@@ -45,7 +44,7 @@ export function createModal() {
     newGame();
   });
 
-  gameState.elements.modal = {
+  elementsDOM.modal = {
     modal: modal,
     text: modalText,
     word: secretWord,

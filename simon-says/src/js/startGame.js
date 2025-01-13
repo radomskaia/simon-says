@@ -1,30 +1,25 @@
 import { CSS_CLASSES, GAME_MESSAGES } from "@/js/gameConstants.js";
 import { gameState } from "@/js/gameState.js";
+import { elementsDOM } from "@/js/elementsDOM.js";
 
 export function disabledKeyboard(isDisabled) {
   gameState.isPlaying = !isDisabled;
-  gameState.elements.keyboardWrapper.classList.toggle(
-    CSS_CLASSES.NON_INTERACTIVE,
-    isDisabled,
-  );
+  toggleElementInteractivity(!isDisabled, elementsDOM.keyboardWrapper);
 }
 
-function disabledButtons(isDisabled) {
-  gameState.elements.buttonWrapper.classList.toggle(
-    CSS_CLASSES.NON_INTERACTIVE,
-    isDisabled,
-  );
+function toggleElementInteractivity(isInteractivity, element) {
+  element.classList.toggle(CSS_CLASSES.NON_INTERACTIVE, !isInteractivity);
 }
 
 function showSequence(buttons) {
   disabledKeyboard(true);
-  disabledButtons(true);
+  toggleElementInteractivity(false, elementsDOM.buttonWrapper);
   let index = 0;
 
   function showNextChar() {
     if (index >= buttons.length) {
       disabledKeyboard(false);
-      disabledButtons(false);
+      toggleElementInteractivity(true, elementsDOM.buttonWrapper);
       return;
     }
     const button = buttons[index];
@@ -53,8 +48,8 @@ function showSequence(buttons) {
 
 function generateSequence() {
   const sequenceLength = gameState.roundCounter * 2;
-  const keyboard = gameState.elements.keyboards[gameState.level];
-  const repeatButton = gameState.elements.actionButtons.repeat;
+  const keyboard = elementsDOM.keyboards[gameState.level];
+  const repeatButton = elementsDOM.actionButtons.repeat;
   const maxIndex = Object.values(keyboard).length;
   const sequenceButtons = [];
   for (let i = 0; i < sequenceLength; i++) {
@@ -68,12 +63,12 @@ function generateSequence() {
   repeatButton.onclick = () => {
     showSequence(sequenceButtons);
     gameState.isMistake = true;
-    gameState.elements.actionButtons.repeat.classList.remove(
+    elementsDOM.actionButtons.repeat.classList.remove(
       CSS_CLASSES.HIGHLIGHT_BUTTON,
     );
-    gameState.elements.outputField.classList.remove(CSS_CLASSES.MISTAKE);
-    gameState.elements.outputField.classList.remove(CSS_CLASSES.WIN_ROUND);
-    gameState.elements.outputField.textContent = GAME_MESSAGES.SIMON_SAYS;
+    elementsDOM.outputField.classList.remove(CSS_CLASSES.MISTAKE);
+    elementsDOM.outputField.classList.remove(CSS_CLASSES.WIN_ROUND);
+    elementsDOM.outputField.textContent = GAME_MESSAGES.SIMON_SAYS;
     gameState.sequenceArray = gameState.sequence.split("");
     repeatButton.disabled = true;
   };
@@ -82,23 +77,23 @@ function generateSequence() {
 
 export function startGame() {
   gameState.roundCounter++;
-  gameState.elements.roundCounter.textContent = gameState.roundCounter;
-  gameState.elements.outputField.classList.remove(CSS_CLASSES.MISTAKE);
-  gameState.elements.outputField.classList.remove(CSS_CLASSES.WIN_ROUND);
-  gameState.elements.actionButtons.repeat.disabled = false;
+  elementsDOM.roundCounter.textContent = gameState.roundCounter;
+  elementsDOM.outputField.classList.remove(CSS_CLASSES.MISTAKE);
+  elementsDOM.outputField.classList.remove(CSS_CLASSES.WIN_ROUND);
+  elementsDOM.actionButtons.repeat.disabled = false;
   gameState.isMistake = false;
-  gameState.elements.levelList.classList.add(CSS_CLASSES.NON_INTERACTIVE);
-  gameState.elements.actionButtons.repeat.classList.remove(
+  elementsDOM.levelList.classList.add(CSS_CLASSES.NON_INTERACTIVE);
+  elementsDOM.actionButtons.repeat.classList.remove(
     CSS_CLASSES.HIGHLIGHT_BUTTON,
   );
 
-  Object.entries(gameState.elements.actionButtons).forEach(([key, value]) => {
+  Object.entries(elementsDOM.actionButtons).forEach(([key, value]) => {
     if (key === "start" || key === "next") {
       value.classList.add(CSS_CLASSES.HIDDEN);
       return;
     }
     value.classList.remove(CSS_CLASSES.HIDDEN);
   });
-  gameState.elements.outputField.textContent = GAME_MESSAGES.SIMON_SAYS;
+  elementsDOM.outputField.textContent = GAME_MESSAGES.SIMON_SAYS;
   generateSequence();
 }
