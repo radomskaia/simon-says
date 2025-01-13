@@ -1,33 +1,38 @@
-import { disabledKeyboard } from "@/js/startGame.js";
 import {
   CSS_CLASSES,
   GAME_MESSAGES,
   NUMBER_OF_ROUND,
+  roundStatus,
 } from "@/js/gameConstants.js";
 import { gameState } from "@/js/gameState.js";
 import { elementsDOM } from "@/js/elementsDOM.js";
+import { disabledKeyboard } from "@/js/utils.js";
+import { showModalWindow } from "@/js/modal.js";
 
-function showModalWindow() {
-  elementsDOM.modal.text.textContent =
-    gameState.sequenceArray.length === 0
-      ? GAME_MESSAGES.WIN
-      : GAME_MESSAGES.LOSE;
-  elementsDOM.modal.word.textContent = gameState.sequence.toUpperCase();
-  elementsDOM.modal.modal.showModal();
+function updateRoundStatusUI(isMistake) {
+  const repeatClass = isMistake
+    ? CSS_CLASSES.HIGHLIGHT_BUTTON
+    : CSS_CLASSES.HIDDEN;
+  const result = isMistake ? roundStatus.mistake : roundStatus.win;
+  if (isMistake) {
+    gameState.isMistake = isMistake;
+  } else {
+    elementsDOM.actionButtons.next.classList.remove(CSS_CLASSES.HIDDEN);
+  }
+
+  elementsDOM.outputField.textContent = GAME_MESSAGES[result];
+  elementsDOM.outputField.classList.add(CSS_CLASSES[result]);
+  elementsDOM.actionButtons.repeat.classList.add(repeatClass);
+  disabledKeyboard(true);
 }
 
 function checkGameOver() {
-  console.log(elementsDOM);
   if (gameState.sequenceArray.length !== 0) {
     return;
   }
   gameState.isPlaying = false;
   if (gameState.roundCounter !== NUMBER_OF_ROUND) {
-    disabledKeyboard(true);
-    elementsDOM.actionButtons.next.classList.remove(CSS_CLASSES.HIDDEN);
-    elementsDOM.actionButtons.repeat.classList.add(CSS_CLASSES.HIDDEN);
-    elementsDOM.outputField.textContent = GAME_MESSAGES.WIN_ROUND;
-    elementsDOM.outputField.classList.add(CSS_CLASSES.WIN_ROUND);
+    updateRoundStatusUI(false);
   } else {
     showModalWindow();
   }
@@ -44,13 +49,7 @@ export function gameLogic(pressedChar) {
     showModalWindow();
   }
   if (!isGuessed) {
-    gameState.isMistake = true;
-    disabledKeyboard(true);
-    elementsDOM.actionButtons.repeat.classList.add(
-      CSS_CLASSES.HIGHLIGHT_BUTTON,
-    );
-    elementsDOM.outputField.textContent = GAME_MESSAGES.MISTAKE;
-    elementsDOM.outputField.classList.add(CSS_CLASSES.MISTAKE);
+    updateRoundStatusUI(true);
   } else {
     elementsDOM.outputField.textContent += pressedChar;
     gameState.sequenceArray.shift();

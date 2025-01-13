@@ -1,15 +1,14 @@
 import { createDOMElement } from "./utils.js";
 import { createLevelList } from "@/js/levelTabs.js";
-import { newGame } from "@/js/newGame.js";
-import { startGame } from "@/js/startGame.js";
+import { createActionButtons } from "@/js/actionButtons.js";
 import { createModal } from "@/js/modal.js";
-import { GAME_MESSAGES } from "@/js/gameConstants.js";
+import { GAME_MESSAGES, LEVELS } from "@/js/gameConstants.js";
 import { elementsDOM } from "@/js/elementsDOM.js";
 
 /**
  * Creates and appends the DOM tree for the game interface.
  * Initializes event listeners and returns references to the essential elements.
- * @returns {Object} - An object containing references to the created DOM elements.
+ *  An object containing references to the created DOM elements.
  */
 export function createDOMTree() {
   const allElements = {};
@@ -55,10 +54,7 @@ export function createDOMTree() {
     allElements.roundText,
   );
 
-  allElements.levelList = createLevelList(
-    ["easy", "medium", "hard"],
-    allElements,
-  );
+  allElements.levelList = createLevelList(LEVELS);
 
   allElements.keyboardWrapper = createDOMElement({
     classList: [
@@ -75,40 +71,13 @@ export function createDOMTree() {
     classList: ["outputField"],
     textContent: GAME_MESSAGES.START,
   });
-  allElements.actionButtons = {};
-  allElements.actionButtons.start = createDOMElement({
-    tagName: "button",
-    classList: ["button", "actionButton"],
-    textContent: "start",
-  });
-  allElements.actionButtons.start.addEventListener("click", startGame);
-  allElements.actionButtons.repeat = createDOMElement({
-    tagName: "button",
-    classList: ["button", "actionButton"],
-    textContent: "Repeat the sequence",
-  });
-  allElements.actionButtons.newGame = createDOMElement({
-    tagName: "button",
-    classList: ["button", "actionButton"],
-    textContent: "new game",
-  });
-  allElements.actionButtons.newGame.addEventListener("click", newGame);
-  allElements.actionButtons.next = createDOMElement({
-    tagName: "button",
-    classList: ["button", "actionButton", "actionButtonHighlight"],
-    textContent: "next",
-  });
-  allElements.actionButtons.next.addEventListener("click", startGame);
+
   allElements.buttonWrapper = createDOMElement({
     classList: ["flex", "flex_gap-20", "flex--align-justify-center"],
   });
 
-  allElements.buttonWrapper.append(
-    allElements.actionButtons.start,
-    allElements.actionButtons.newGame,
-    allElements.actionButtons.next,
-    allElements.actionButtons.repeat,
-  );
+  allElements.actionButtons = createActionButtons();
+  allElements.buttonWrapper.append(...Object.values(allElements.actionButtons));
 
   allElements.flexDiv.append(allElements.outputField, allElements.roundWrapper);
 
@@ -120,14 +89,14 @@ export function createDOMTree() {
     allElements.buttonWrapper,
   );
 
-  document.body.append(allElements.container, createModal());
+  allElements.modal = createModal();
+  document.body.append(allElements.container, allElements.modal.modal);
 
   elementsDOM.keyboardWrapper = allElements.keyboardWrapper;
   elementsDOM.roundCounter = allElements.roundCounter;
   elementsDOM.actionButtons = allElements.actionButtons;
   elementsDOM.levelList = allElements.levelList;
-  elementsDOM.levelInputs = allElements.levelInputs;
-  elementsDOM.outputField = allElements.outputField;
   elementsDOM.modal = allElements.modal;
+  elementsDOM.outputField = allElements.outputField;
   elementsDOM.buttonWrapper = allElements.buttonWrapper;
 }

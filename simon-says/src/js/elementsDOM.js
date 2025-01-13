@@ -1,16 +1,18 @@
+import { LEVELS } from "@/js/gameConstants.js";
+
 export const elementsDOM = {
   actionButtons: {},
   buttonWrapper: null,
   keyboardWrapper: null,
   keyboards: {
-    easy: {},
-    medium: {},
-    hard: {},
+    [LEVELS[0]]: {},
+    [LEVELS[1]]: {},
+    [LEVELS[2]]: {},
   },
-  levelInputs: {
-    easy: {},
-    medium: {},
-    hard: {},
+  levelButtons: {
+    [LEVELS[0]]: {},
+    [LEVELS[1]]: {},
+    [LEVELS[2]]: {},
   },
   levelList: null,
   modal: {},
