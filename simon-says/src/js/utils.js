@@ -33,21 +33,13 @@ export function createDOMElement({
   return element;
 }
 
-export function disabledKeyboard(isDisabled) {
-  gameState.isPlaying = !isDisabled;
-  toggleElementInteractivity(!isDisabled, elementsDOM.keyboardWrapper);
-}
-
-export function toggleElementInteractivity(isInteractivity, element) {
-  element.classList.toggle(CSS_CLASSES.NON_INTERACTIVE, !isInteractivity);
-}
-
 export function removeOutputCSS() {
   elementsDOM.outputField.classList.remove(CSS_CLASSES.MISTAKE);
   elementsDOM.outputField.classList.remove(CSS_CLASSES.WIN_ROUND);
 }
 
 export function resetGame(isNew) {
+  gameState.isMistake = false;
   elementsDOM.roundCounter.textContent = gameState.roundCounter;
   elementsDOM.actionButtons.repeat.disabled = false;
   removeOutputCSS();
@@ -75,4 +67,15 @@ export function createActionButton(buttonName, callBack, isHighlight = false) {
   }
   button.addEventListener("click", callBack);
   return button;
+}
+
+export function disabledButtons(isDisabled, buttonsArr) {
+  buttonsArr.forEach((buttonsList) => {
+    Object.values(buttonsList).forEach((button) => {
+      if (button.textContent === "Repeat the sequence" && gameState.isMistake) {
+        return;
+      }
+      button.disabled = isDisabled;
+    });
+  });
 }

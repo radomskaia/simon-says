@@ -28,6 +28,9 @@ function createRadioButton(id) {
   });
   liElement.append(inputElement, labelElement);
   liElement.addEventListener("click", () => {
+    if (inputElement.disabled) {
+      return;
+    }
     gameState.level = id;
   });
   return liElement;

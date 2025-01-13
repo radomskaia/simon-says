@@ -95,7 +95,6 @@ export function createDOMTree() {
   elementsDOM.keyboardWrapper = allElements.keyboardWrapper;
   elementsDOM.roundCounter = allElements.roundCounter;
   elementsDOM.actionButtons = allElements.actionButtons;
-  elementsDOM.levelList = allElements.levelList;
   elementsDOM.modal = allElements.modal;
   elementsDOM.outputField = allElements.outputField;
   elementsDOM.buttonWrapper = allElements.buttonWrapper;

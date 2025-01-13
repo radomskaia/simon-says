@@ -41,5 +41,5 @@ export const ANIMATION = {
   easing: "ease-in-out",
   delay: 300,
   transform: { base: "scale(1)", active: "scale(1.2)" },
-  background: { base: "var(--primary)", active: "var(--dark)" },
+  background: { base: "var(--primary-alpha)", active: "var(--dark)" },
 };

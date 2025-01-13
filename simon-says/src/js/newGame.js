@@ -1,7 +1,7 @@
-import { CSS_CLASSES, GAME_MESSAGES } from "@/js/gameConstants.js";
+import { GAME_MESSAGES } from "@/js/gameConstants.js";
 import { gameState } from "@/js/gameState.js";
 import { elementsDOM } from "@/js/elementsDOM.js";
-import { disabledKeyboard, resetGame } from "@/js/utils.js";
+import { disabledButtons, resetGame } from "@/js/utils.js";
 
 /**
  * Initializes the game by selecting a new word, rendering its letters, and displaying the hint.
@@ -12,8 +12,8 @@ export function newGame() {
   elementsDOM.levelButtons[gameState.level].checked = true;
   gameState.sequenceArray = [];
   elementsDOM.outputField.textContent = GAME_MESSAGES.START;
-  elementsDOM.levelList.classList.remove(CSS_CLASSES.NON_INTERACTIVE);
-  disabledKeyboard(true);
-
+  disabledButtons(false, [elementsDOM.levelButtons]);
+  gameState.isPlaying = false;
+  disabledButtons(true, [elementsDOM.keyboards.hard]);
   resetGame(true);
 }

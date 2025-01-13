@@ -14,7 +14,6 @@ export const elementsDOM = {
     [LEVELS[1]]: {},
     [LEVELS[2]]: {},
   },
-  levelList: null,
   modal: {},
   outputField: null,
   roundCounter: null,

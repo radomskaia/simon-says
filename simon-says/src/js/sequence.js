@@ -1,17 +1,19 @@
-import { disabledKeyboard, toggleElementInteractivity } from "@/js/utils.js";
+import { disabledButtons } from "@/js/utils.js";
 import { elementsDOM } from "@/js/elementsDOM.js";
 import { gameState } from "@/js/gameState.js";
 import { ANIMATION, GAME_MESSAGES } from "@/js/gameConstants.js";
 
 export function showSequence(buttons) {
-  disabledKeyboard(true);
-  toggleElementInteractivity(false, elementsDOM.buttonWrapper);
+  gameState.isPlaying = false;
   let index = 0;
 
   function showNextChar() {
     if (index >= buttons.length) {
-      disabledKeyboard(false);
-      toggleElementInteractivity(true, elementsDOM.buttonWrapper);
+      disabledButtons(false, [
+        elementsDOM.keyboards[gameState.level],
+        elementsDOM.actionButtons,
+      ]);
+      gameState.isPlaying = true;
       return;
     }
     const button = buttons[index];

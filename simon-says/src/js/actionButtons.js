@@ -1,4 +1,8 @@
-import { createActionButton, removeOutputCSS } from "@/js/utils.js";
+import {
+  createActionButton,
+  disabledButtons,
+  removeOutputCSS,
+} from "@/js/utils.js";
 import { startRound } from "@/js/startRound.js";
 import { gameState } from "@/js/gameState.js";
 import { newGame } from "@/js/newGame.js";
@@ -10,6 +14,10 @@ function repeatHandler() {
   if (gameState.isPressed) {
     return;
   }
+  disabledButtons(true, [
+    elementsDOM.keyboards[gameState.level],
+    elementsDOM.actionButtons,
+  ]);
   showSequence(gameState.sequenceButtons);
   gameState.isMistake = true;
   elementsDOM.actionButtons.repeat.classList.remove(
