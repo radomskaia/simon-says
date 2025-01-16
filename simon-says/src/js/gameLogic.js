@@ -35,6 +35,7 @@ function checkGameOver() {
   if (gameState.roundCounter !== NUMBER_OF_ROUND) {
     updateRoundStatusUI(false);
   } else {
+    elementsDOM.actionButtons.repeat.disabled = true;
     showModalWindow();
   }
 }
