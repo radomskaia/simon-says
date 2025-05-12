@@ -40,7 +40,7 @@
     "stylelint-config-standard-scss": "^14.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.8.0",
     "stylelint-order": "^6.0.4",
-    "vite": "^6.0.5"
+    "vite": "6.3.4"
   },
   "dependencies": {
     "postcss-import": "^16.1.0",
