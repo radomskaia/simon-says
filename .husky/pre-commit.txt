@@ -1,2 +1,1 @@
-cd hangman
 npx lint-staged
