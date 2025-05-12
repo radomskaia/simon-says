@@ -39,17 +39,21 @@
   cursor: auto;
 }
 
+  .buttonKeyboard:active {
+    background-color: var(--dark);
+    transform: translateY(4px);
+  }
+
+  .buttonKeyboard:disabled:active {
+    background-color: var(--primary-alpha);
+    transform: translateY(0);
+  }
+
 }
 
-.buttonKeyboard:active,
 .buttonKeyboardActive {
   background-color: var(--dark);
   transform: translateY(4px);
-}
-
-.buttonKeyboard:disabled:active {
-  background-color: var(--primary-alpha);
-  transform: translateY(0);
 }
 
 /* 1360 */
